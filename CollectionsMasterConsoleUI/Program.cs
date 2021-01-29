@@ -77,19 +77,16 @@ namespace CollectionsMasterConsoleUI
 
             //Create a method that prints if a user number is present in the list
             //Remember: What if the user types "abc" accident your app should handle that!
-            
-            
-            Console.WriteLine("What number will you search for in the number list?");
-            int userInput = Convert.ToInt32(Console.ReadLine());
-            
-            if (myList.Contains(userInput))
+
+            bool isNumber;
+            int userInput;
+            do
             {
-                Console.WriteLine($"{userInput} is in the list.");
-            }
-            else if ((myList.Contains(userInput)) == false)
-            {
-                Console.WriteLine($"{userInput} is not in the list.");
-            }
+                Console.WriteLine("What number will you search for in the number list?");
+                isNumber = int.TryParse(Console.ReadLine(), out userInput);
+            } while (isNumber == false);
+
+            NumberChecker(myList, userInput);
 
             Console.WriteLine("-------------------");
 
@@ -145,6 +142,16 @@ namespace CollectionsMasterConsoleUI
         private static void NumberChecker(List<int> numberList, int searchNumber)
         {
             
+            
+
+            if (numberList.Contains(searchNumber))
+            {
+                Console.WriteLine($"{searchNumber} is in the list.");
+            }
+            else if ((numberList.Contains(searchNumber)) == false)
+            {
+                Console.WriteLine($"{searchNumber} is not in the list.");
+            }
         }
 
         private static void Populater(List<int> numberList)
